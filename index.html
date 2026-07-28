@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PenguinMod Discord Activity</title>
+    <!-- 1. Import the official Discord Embedded App SDK via CDN -->
+    <script src="https://unpkg.com"></script>
+    <style>
+        /* Force the page and iframe to fill the exact size of the Discord window */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background-color: #111111;
+        }
+        iframe { 
+            border: none; 
+            width: 100%; 
+            height: 100%; 
+        }
+    </style>
+</head>
+<body>
+
+   
+
+    <iframe id="penguinmod-frame" 
+            src="https://penguinmod.com" 
+            allow="autoplay; camera; microphone; clipboard-write"
+            allowfullscreen>
+    </iframe>
+
+    <script>
+        // 3. Initialize Discord communication
+        async function startDiscordActivity() {
+            // Check if we are running inside Discord
+            if (typeof DiscordSDK !== 'undefined') {
+                try {
+            
+
+                    const discordSdk = new DiscordSDK.DiscordSDK('1531798292734804240');
+                    
+                    // Fire the required ready event to finalize the handshake with Discord
+                    await discordSdk.ready();
+                    console.log("Discord SDK is ready!");
+                } catch (error) {
+                    console.error("Failed to initialize Discord SDK:", error);
+                }
+            } else {
+                console.log("Running outside of Discord (Local testing mode)");
+            }
+        }
+
+        // Run the setup script as soon as the window finishes loading
+        window.addEventListener('load', startDiscordActivity);
+    </script>
+</body>
+</html>
