@@ -3,59 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PenguinMod Discord Activity</title>
-    <!-- 1. Import the official Discord Embedded App SDK via CDN -->
-    <script src="https://unpkg.com"></script>
+    <title>Discord Activity Embed</title>
+    <!-- Load the official Discord Embedded App SDK via CDN -->
+    <script src="https://jsdelivr.net"></script>
     <style>
-        /* Force the page and iframe to fill the exact size of the Discord window */
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            width: 100%; 
-            height: 100%; 
-            overflow: hidden; 
-            background-color: #111111;
+        /* Force the page and the iframe to take up the full Discord Activity window */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000000;
         }
-        iframe { 
-            border: none; 
-            width: 100%; 
-            height: 100%; 
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
         }
     </style>
 </head>
 <body>
 
-   
-
-    <iframe id="penguinmod-frame" 
-            src="https://penguinmod.com" 
-            allow="autoplay; camera; microphone; clipboard-write"
-            allowfullscreen>
-    </iframe>
+    <!-- This iframe embeds your target game directly inside the Discord window -->
+    <iframe id="game-iframe" src="https://truffled.lol/iframe.html?url=https%3A%2F%2Ftruffled.lol%2Fgames%2Fdeltarune%2Findex.html" allowfullscreen></iframe>
 
     <script>
-        // 3. Initialize Discord communication
-        async function startDiscordActivity() {
-            // Check if we are running inside Discord
-            if (typeof DiscordSDK !== 'undefined') {
-                try {
-            
+        // ==========================================
+        // 1. PLACE YOUR BOT / APPLICATION ID HERE
+        // ==========================================
+        const CLIENT_ID = "1531798292734804240"; 
 
-                    const discordSdk = new DiscordSDK.DiscordSDK('1531798292734804240');
-                    
-                    // Fire the required ready event to finalize the handshake with Discord
-                    await discordSdk.ready();
-                    console.log("Discord SDK is ready!");
-                } catch (error) {
-                    console.error("Failed to initialize Discord SDK:", error);
-                }
-            } else {
-                console.log("Running outside of Discord (Local testing mode)");
+        // Extract the global SDK class from the window object
+        const { DiscordSDK } = window.discordSdk;
+        const discordSdk = new DiscordSDK(CLIENT_ID);
+
+        // Initialize connection with Discord's desktop/mobile application
+        async function setupDiscordActivity() {
+            try {
+                await discordSdk.ready();
+                console.log("Discord SDK initialized. External site successfully embedded.");
+            } catch (error) {
+                console.error("Failed to initialize Discord SDK:", error);
             }
         }
 
-        // Run the setup script as soon as the window finishes loading
-        window.addEventListener('load', startDiscordActivity);
+        // Run setup when the page finishes loading
+        window.addEventListener('load', setupDiscordActivity);
     </script>
 </body>
 </html>
