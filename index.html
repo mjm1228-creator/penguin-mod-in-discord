@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Activity Embed</title>
-    <!-- Load the official Discord Embedded App SDK via CDN -->
+    <!-- Corrected full URL for the official Discord Embedded App SDK -->
     <script src="https://jsdelivr.net"></script>
     <style>
         /* Force the page and the iframe to take up the full Discord Activity window */
@@ -26,69 +26,11 @@
 </head>
 <body>
 
-    <!-- This iframe embeds your target game directly inside the Discord window -->
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord Activity Embed</title>
-    <!-- Load the official Discord Embedded App SDK via CDN -->
-    <script src="https://jsdelivr.net"></script>
-    <style>
-        /* Force the page and the iframe to take up the full Discord Activity window */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #000000;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- PASTE THE LINE HERE (Right after the opening <body> tag) -->
+    <!-- This iframe points directly to the unblocked itch.io Deltarune web files -->
     <iframe id="game-iframe" src="https://itch.zone" allowfullscreen="true" allow="autoplay; fullscreen; gamepad"></iframe>
 
     <script>
-        // ==========================================
-        // 1. PLACE YOUR BOT / APPLICATION ID HERE
-        // ==========================================
-        const CLIENT_ID = "PASTE_YOUR_APPLICATION_ID_HERE"; 
-
-        // Extract the global SDK class from the window object
-        const { DiscordSDK } = window.discordSdk;
-        const discordSdk = new DiscordSDK(CLIENT_ID);
-
-        // Initialize connection with Discord's desktop/mobile application
-        async function setupDiscordActivity() {
-            try {
-                await discordSdk.ready();
-                console.log("Discord SDK initialized. External site successfully embedded.");
-            } catch (error) {
-                console.error("Failed to initialize Discord SDK:", error);
-            }
-        }
-
-        // Run setup when the page finishes loading
-        window.addEventListener('load', setupDiscordActivity);
-    </script>
-</body>
-</html>
-
-
-    <script>
-        // ==========================================
-        // 1. PLACE YOUR BOT / APPLICATION ID HERE
-        // ==========================================
+        // Your specific Discord Bot / Application ID is locked in here
         const CLIENT_ID = "1531798292734804240"; 
 
         // Extract the global SDK class from the window object
